@@ -1,4 +1,4 @@
-package com.example.quizgame_android.model;
+package model;
 
 import java.util.ArrayList;
 

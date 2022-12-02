@@ -1,24 +1,24 @@
-package com.example.quizgame_android.model;
+package model;
 
 public class Answer {
 	
 	//specifications
-    private int codeAnswer;
+    private String codeAnswer;
     private String descriptionAnswer;
     private boolean isCorrect;
     
     //implementation
-    public Answer(int codeAnswer, String descriptionAnswer, boolean isCorrect) {
-        this.codeAnswer = codeAnswer;
+    public Answer(String codeAnswer2, String descriptionAnswer, boolean isCorrect) {
+        this.codeAnswer = codeAnswer2;
         this.descriptionAnswer = descriptionAnswer;
         this.isCorrect = isCorrect;
     }
 
-    public int getCodeAnswer() {
+    public String getCodeAnswer() {
         return codeAnswer;
     }
 
-    public void setCodeAnswer(int codeAnswer) {
+    public void setCodeAnswer(String codeAnswer) {
         this.codeAnswer = codeAnswer;
     }
 
