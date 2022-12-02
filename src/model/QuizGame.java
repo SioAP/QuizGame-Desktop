@@ -1,9 +1,11 @@
-package com.example.quizgame_android.model;
+package model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
+
+import control.Controller;
 
 public class QuizGame {
     
@@ -26,7 +28,11 @@ public class QuizGame {
     	}
     }
 
-    public String getPlayerName() {
+    public QuizGame(String playerNameParam, int i, ArrayList<Question> questions) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getPlayerName() {
         return playerName;
     }
 
@@ -69,8 +75,6 @@ public class QuizGame {
     }
 
     public Boolean isCorrectThisAnswer(int selectedCodeAnswer, ArrayList<Answer> answers) {
-    	System.out.println(answers);
-    	System.out.println(selectedCodeAnswer);
         // answers.removeIf(answer -> !answer.getCodeAnswer().contains(selectedCodeAnswer));
         if (answers.get(selectedCodeAnswer-1).getIsCorrect()) {
             return true;
@@ -104,7 +108,7 @@ public class QuizGame {
 		try {
 			rs = myController.getMyDAO().getStmt().executeQuery("SELECT * FROM quiz_db.answer WHERE id_question = " + id);
 			while (rs.next()) {
-				int code = rs.getInt("id_question");
+				String code = rs.getString("id_question");
 				String desc = rs.getString("desc_answer");
 				boolean correct = rs.getBoolean("is_correct");
 
