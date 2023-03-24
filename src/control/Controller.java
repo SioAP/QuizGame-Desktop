@@ -1,12 +1,13 @@
 package control;
 
-import view.*;
-import websocket.*;
-import model.*;
-
 import com.esotericsoftware.kryonet.Connection;
 
-import data.*;
+import data.DAOMySQL;
+import model.QuizGame;
+import model.User;
+import view.Connexion;
+import websocket.ClientWebsocket;
+import websocket.Message;
 
 public class Controller {
 	
@@ -16,6 +17,7 @@ public class Controller {
     private DAOMySQL myDAO;
     private ClientWebsocket myClient;
     private User myUser;
+    private Connexion myConsole;
 	
 	
 	//implementation
@@ -26,14 +28,15 @@ public class Controller {
 		
 		//data interactions
 		this.myDAO = new DAOMySQL(this);
-		this.myDAO.connectDatabase();
+	//	this.myDAO.connectDatabase();
 		
-		this.myClient = new ClientWebsocket(this);
-		this.myClient.startClient();
+	//	this.myClient = new ClientWebsocket(this);
+	//	this.myClient.startClient();
 		
-		this.myGame = new QuizGame(this);
+	//	this.myGame = new QuizGame(this);
 		
-		//this.myConsole = new Console(this);
+	this.myConsole = new Connexion(this);
+	this.myConsole.setVisible(true);
 	}
 	
 	public void selectOption(Message packet, Connection c) throws Exception {
