@@ -26,11 +26,10 @@ public class Controller {
 		
 		//data interactions
 		this.myDAO = new DAOMySQL(this);
-		this.myDAO.connectDatabase();
+	//	this.myDAO.connectDatabase();
 		
-		this.myClient = new ClientWebsocket(this);
-		this.myClient.startClient();
-		
+		//this.myClient = new ClientWebsocket(this);
+		//this.myClient.startClient();
 		this.myGame = new QuizGame(this);
 		
 		//this.myConsole = new Console(this);

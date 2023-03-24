@@ -1,4 +1,5 @@
-/websocket/
-/model/
 /control/
+/data/
+/model/
 /view/
+/websocket/

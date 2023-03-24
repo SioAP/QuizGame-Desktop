@@ -1,7 +1,10 @@
 package model;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -23,7 +26,7 @@ public class QuizGame {
     	for (int i=0; i < 4; i++) {
     		int randomNumber = new Random().nextInt(26);
     		
-    		this.myQuestions.add(findQuestion(randomNumber));
+    		this.myQuestions.add(myController.getMyDAO().findQuestion(randomNumber));
     	}
     }
 
@@ -62,40 +65,7 @@ public class QuizGame {
         }
     }
     
-    public Question findQuestion(int randomNumber) {
-		Question aQuestion = null;
-		ResultSet rs;
-		try {
-			rs = myController.getMyDAO().getStmt().executeQuery("SELECT * FROM quiz_db.question WHERE id_question = " + randomNumber);
-			if (rs.next()) {
-				int id = rs.getInt("id_question");
-				String desc = rs.getString("desc_question");
-				ArrayList<Answer> answers = getAnswers(id);
-				
-				aQuestion = new Question(id, desc, answers);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return aQuestion;
-	}
+   
     
-    private ArrayList<Answer> getAnswers(int id) {
-		ArrayList<Answer> Answers = new ArrayList<Answer>();
-		ResultSet rs;
-		try {
-			rs = myController.getMyDAO().getStmt().executeQuery("SELECT * FROM quiz_db.answer WHERE id_question = " + id);
-			while (rs.next()) {
-				String code = rs.getString("id_question");
-				String desc = rs.getString("desc_answer");
-				boolean correct = rs.getBoolean("is_correct");
-
-				Answers.add(new Answer(code, desc, correct));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return Answers;
-	}
+  
 }

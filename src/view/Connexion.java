@@ -107,7 +107,7 @@ public class Connexion extends JFrame {
 				client.createUser(txtLogin.getText(), txtPassword.getText());
 				User user = myController.getMyUser();
 				if (user.isConnected()) {
-					lblMessage
+					
 				}
 			}
 		});

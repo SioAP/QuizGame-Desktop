@@ -14,7 +14,7 @@ public class ClientWebsocket extends Listener {
 	//Our client object.
 	static Client client;
 	//IP to connect to.
-	static String ip = "localhost";
+	static String ip = "172.31.1.63";
 	//Ports to connect on.
 	static int tcpPort = 28000, udpPort = 28000;
 	
