@@ -15,7 +15,8 @@ public class Controller {
     private QuizGame myGame;
     private DAOMySQL myDAO;
     private ClientWebsocket myClient;
-    private User myUser;
+    private Connexion myView;
+	private User myUser;
 	
 	
 	//implementation
@@ -28,8 +29,11 @@ public class Controller {
 		this.myDAO = new DAOMySQL(this);
 		this.myDAO.connectDatabase();
 		
+		this.myUser = new User(this);
+		
 		this.myClient = new ClientWebsocket(this);
-		this.myClient.startClient();
+		
+		this.myView = new Connexion(this);
 		
 		this.myGame = new QuizGame(this);
 		
@@ -37,16 +41,7 @@ public class Controller {
 	}
 	
 	public void selectOption(Message packet, Connection c) throws Exception {
-		if(packet.getNbSocket() == 1) {	this.checkRegister(packet, c); }
-	}
-
-	private void checkRegister(Message packet, Connection c) {
-		myUser = packet.getUser();
-		if(packet.getBool()) {
-			myUser.setConnected(true);
-		} else {
-			myUser.setConnected(false);
-		}
+		if(packet.getNbSocket() == 1) {	 }
 	}
 
 	public ClientWebsocket getMyClient() {
@@ -65,8 +60,12 @@ public class Controller {
 		return myDAO;
 	}
 
-	public void setMyDAO(DAOMySQL myDAO) {
-		this.myDAO = myDAO;
+	public Connexion getMyView() {
+		return myView;
+	}
+
+	public void setMyView(Connexion myView) {
+		this.myView = myView;
 	}
 
 	public User getMyUser() {
