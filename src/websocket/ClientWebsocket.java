@@ -14,7 +14,7 @@ public class ClientWebsocket extends Listener {
 	//Our client object.
 	static Client client;
 	//IP to connect to.
-	static String ip = "localhost";
+	static String ip = "87.106.205.180";
 	//Ports to connect on.
 	static int tcpPort = 28000, udpPort = 28000;
 	
@@ -62,10 +62,5 @@ public class ClientWebsocket extends Listener {
 			Message packet = (Message) p;
 			try { myController.selectOption(packet, c); } catch (Exception e) {	e.printStackTrace(); }
 		}
-	}
-	
-	public void createUser(String name, String pass) {
-		User user = new User(name, pass);
-		client.sendTCP(new Message(1, user));
 	}
 }
