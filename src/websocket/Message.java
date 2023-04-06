@@ -8,8 +8,6 @@ public class Message {
 	
 	private int nbSocket;
 	private User User;
-	private boolean bool;
-	private String aMessage;
 	
 	// Messages Contructors
 	
@@ -21,12 +19,6 @@ public class Message {
 		nbSocket = i;
 		User = user;
 	}
-	
-	public Message(int i, boolean b, User user) {
-		nbSocket = i;
-		bool = b;
-		User = user;
-	}
 
 	// Getter & Setter
 	
@@ -36,14 +28,6 @@ public class Message {
 
 	public User getUser() {
 		return User;
-	}
-
-	public boolean getBool() {
-		return bool;
-	}
-
-	public String getViewMessage() {
-		return aMessage;
 	}
 	
 }

@@ -28,33 +28,33 @@ public class Connexion extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtLogin;
 	private JTextField txtPassword;
-	private ClientWebsocket client;
 	private Controller myController;
+	private ClientWebsocket myClient;
+	private JLabel lblMessage;
 
 	/**
 	 * Launch the application.
 	 */
 	public Connexion(Controller aController) {
 		myController = aController;
-	}
-	
-	public void launchView() {
+		myClient = myController.getMyClient();
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Connexion frame = new Connexion();
-					frame.setVisible(true);
+					startView();
+					setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the frame.
 	 */
-	public Connexion() {
+	public void startView() {
 		setTitle("Vinci QuizGame");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\workspaces\\eclipse-workspace\\QuizGame-Desktop\\img\\logo.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,10 +104,20 @@ public class Connexion extends JFrame {
 		JButton btnRegister = new JButton("S'inscrire");
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				client.createUser(txtLogin.getText(), txtPassword.getText());
-				User user = myController.getMyUser();
-				if (user.isConnected()) {
-					lblMessage
+				if(txtLogin.getText() == "") {
+					lblMessage.setText("Merci d'inscrire un pseudonyme");
+				} else if(txtPassword.getText() == "") {
+					lblMessage.setText("Merci d'inscrire un mot de passe");
+				} else {
+					try {
+						boolean runned = myController.getMyUser().createUser(txtLogin.getText(), txtPassword.getText());
+						//System.out.println("Runned :" + runned);
+						if (!runned) {
+							lblMessage.setText("Ce pseudonyme n'est pas disponible...");
+						}
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		});
@@ -119,6 +129,15 @@ public class Connexion extends JFrame {
 		JButton btnLogin = new JButton("S'indentifier");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					boolean runned = myController.getMyUser().connectUser(txtLogin.getText(), txtPassword.getText());
+					if (!runned) {
+						lblMessage.setText("Pseudonyme ou Mot de passe incorrect...");
+					}
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnLogin.setBackground(new Color(255, 255, 255));
@@ -126,11 +145,11 @@ public class Connexion extends JFrame {
 		btnLogin.setBounds(208, 249, 140, 35);
 		panel.add(btnLogin);
 		
-		JLabel lblMessage = new JLabel("");
+		lblMessage = new JLabel("");
 		lblMessage.setForeground(new Color(255, 0, 0));
 		lblMessage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMessage.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblMessage.setBounds(78, 230, 200, 19);
+		lblMessage.setBounds(10, 226, 338, 19);
 		panel.add(lblMessage);
 	}
 }
