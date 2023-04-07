@@ -6,7 +6,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/workspaces/eclipse-workspace/quiz/lib/mysql-connector-java-8.0.30.jar"/>
+	<classpathentry kind="lib" path="C:/Users/UTI310/Documents/QuizGame-Desktop/lib/mysql-connector-java-8.0.30.jar"/>
 	<classpathentry kind="lib" path="lib/jsonbeans-0.7.jar"/>
 	<classpathentry kind="lib" path="lib/kryo-2.24.0.jar"/>
 	<classpathentry kind="lib" path="lib/kryonet-2.22.0-RC1.jar"/>
