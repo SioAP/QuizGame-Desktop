@@ -110,6 +110,13 @@ public class PnlLogin extends JPanel {
 					boolean runned = myController.getMyUser().connectUser(txtLogin.getText(), txtPassword.getText());
 					if (!runned) {
 						lblMessage.setText("Pseudonyme ou Mot de passe incorrect...");
+					}else {
+						myController.getMyView().getPnlConnexion().setVisible(false);
+						myController.getMyView().remove(myController.getMyView().getPnlConnexion());
+						myController.getMyView().setPnlConnexion(null);
+						
+						myController.getMyView().setPnlModejeu(new PnlGamemode(controller));
+						myController.getMyView().add(myController.getMyView().getPnlModejeu());
 					}
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
