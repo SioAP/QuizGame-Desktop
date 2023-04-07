@@ -1,29 +1,24 @@
 package view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import control.Controller;
-import model.User;
+import websocket.ClientWebsocket;
 
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dialog.ModalExclusionType;
-import java.awt.Toolkit;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-import websocket.*;
-
-public class PnlLogin extends JFrame {
+public class PnlLogin extends JPanel {
 
 	private JPanel contentPane;
 	private JTextField txtLogin;
@@ -35,35 +30,13 @@ public class PnlLogin extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public PnlLogin(Controller aController) {
-		myController = aController;
+	public PnlLogin(Controller controller) {
+		myController = controller;
 		myClient = myController.getMyClient();
 		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					startView();
-					setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	
-	/**
-	 * Create the frame.
-	 */
-	public void startView() {
-		setTitle("Vinci QuizGame");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\workspaces\\eclipse-workspace\\QuizGame-Desktop\\img\\logo.png"));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 389, 351);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setBounds(10, 10, 358, 294);
+		setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 10, 358, 294);
@@ -114,6 +87,14 @@ public class PnlLogin extends JFrame {
 						//System.out.println("Runned :" + runned);
 						if (!runned) {
 							lblMessage.setText("Ce pseudonyme n'est pas disponible...");
+						}else {
+							myController.getMyView().getPnlConnexion().setVisible(false);
+							myController.getMyView().remove(myController.getMyView().getPnlConnexion());
+							myController.getMyView().setPnlConnexion(null);
+							
+							myController.getMyView().setPnlInscritpion(new PnlRegister(controller));
+							myController.getMyView().add(myController.getMyView().getPnlInscritpion());
+							
 						}
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -133,10 +114,19 @@ public class PnlLogin extends JFrame {
 					boolean runned = myController.getMyUser().connectUser(txtLogin.getText(), txtPassword.getText());
 					if (!runned) {
 						lblMessage.setText("Pseudonyme ou Mot de passe incorrect...");
+					}else {
+						myController.getMyView().getPnlConnexion().setVisible(false);
+						myController.getMyView().remove(myController.getMyView().getPnlConnexion());
+						myController.getMyView().setPnlConnexion(null);
+						
+						myController.getMyView().setPnlModejeu(new PnlGamemode(controller));
+						myController.getMyView().add(myController.getMyView().getPnlModejeu());
 					}
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+					
+
 				}
 			}
 		});
