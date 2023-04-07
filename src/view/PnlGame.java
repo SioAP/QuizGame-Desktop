@@ -7,12 +7,12 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import control.Controller;
-import view.Router;
+import view.Connexion;
 
 	
 public class PnlGame extends JPanel {
 	
-	private Router myConnexion;
+	private Connexion myConnexion;
 	private Controller myController;
 	
 	public PnlGame(Controller controller) {
