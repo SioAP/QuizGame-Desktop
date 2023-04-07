@@ -23,7 +23,7 @@ import java.awt.event.ActionEvent;
 
 import websocket.*;
 
-public class Connexion extends JFrame {
+public class PnlLogin extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtLogin;
@@ -35,7 +35,7 @@ public class Connexion extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public Connexion(Controller aController) {
+	public PnlLogin(Controller aController) {
 		myController = aController;
 		myClient = myController.getMyClient();
 		
