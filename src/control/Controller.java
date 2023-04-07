@@ -1,12 +1,13 @@
 package control;
 
-import view.*;
-import websocket.*;
-import model.*;
-
 import com.esotericsoftware.kryonet.Connection;
 
-import data.*;
+import data.DAOMySQL;
+import model.QuizGame;
+import model.User;
+import view.Connexion;
+import websocket.ClientWebsocket;
+import websocket.Message;
 
 public class Controller {
 	
@@ -15,8 +16,8 @@ public class Controller {
     private QuizGame myGame;
     private DAOMySQL myDAO;
     private ClientWebsocket myClient;
-    private Connexion myView;
-	private User myUser;
+    private User myUser;
+    private Connexion myConsole;
 	
 	
 	//implementation
@@ -27,21 +28,28 @@ public class Controller {
 		
 		//data interactions
 		this.myDAO = new DAOMySQL(this);
-		this.myDAO.connectDatabase();
+	//	this.myDAO.connectDatabase();
 		
-		this.myUser = new User(this);
+	//	this.myClient = new ClientWebsocket(this);
+	//	this.myClient.startClient();
 		
-		this.myClient = new ClientWebsocket(this);
+	//	this.myGame = new QuizGame(this);
 		
-		this.myView = new Connexion(this);
-		
-		this.myGame = new QuizGame(this);
-		
-		//this.myConsole = new Console(this);
+	this.myConsole = new Connexion(this);
+	this.myConsole.setVisible(true);
 	}
 	
 	public void selectOption(Message packet, Connection c) throws Exception {
-		if(packet.getNbSocket() == 1) {	 }
+		if(packet.getNbSocket() == 1) {	this.checkRegister(packet, c); }
+	}
+
+	private void checkRegister(Message packet, Connection c) {
+		myUser = packet.getUser();
+		if(packet.getBool()) {
+			myUser.setConnected(true);
+		} else {
+			myUser.setConnected(false);
+		}
 	}
 
 	public ClientWebsocket getMyClient() {
@@ -60,16 +68,30 @@ public class Controller {
 		return myDAO;
 	}
 
-	public Connexion getMyView() {
-		return myView;
-	}
-
-	public void setMyView(Connexion myView) {
-		this.myView = myView;
+	public void setMyDAO(DAOMySQL myDAO) {
+		this.myDAO = myDAO;
 	}
 
 	public User getMyUser() {
 		return myUser;
 	}
+
+	public Connexion getMyConsole() {
+		return myConsole;
+	}
+
+	public void setMyConsole(Connexion myConsole) {
+		this.myConsole = myConsole;
+	}
+
+	public void setMyClient(ClientWebsocket myClient) {
+		this.myClient = myClient;
+	}
+
+	public void setMyUser(User myUser) {
+		this.myUser = myUser;
+	}
+	
+	
 }
 
