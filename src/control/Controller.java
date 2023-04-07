@@ -39,9 +39,18 @@ public class Controller {
 	this.myConsole.setVisible(true);
 	}
 	
-	public void selectOption(Message packet, Connection c) throws Exception {
-		if(packet.getNbSocket() == 1) {	 }
-	}
+//	public void selectOption(Message packet, Connection c) throws Exception {
+//		if(packet.getNbSocket() == 1) {	this.checkRegister(packet, c); }
+//	}
+
+//	private void checkRegister(Message packet, Connection c) {
+//		myUser = packet.getUser();
+//		if(packet.getBool()) {
+//			myUser.setConnected(true);
+//		} else {
+//			myUser.setConnected(false);
+//		}
+//	}
 
 	public ClientWebsocket getMyClient() {
 		return myClient;

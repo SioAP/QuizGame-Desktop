@@ -43,8 +43,8 @@ public class Connexion extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		ImagePanel panel = new ImagePanel("./img/background.jpg");
-		contentPane.add(panel);
+		ImagePanel panel = new ImagePanel("img/background.jpg");
+		getContentPane().add(panel);
 		
 
 		//PnlGame pnlJeu = new PnlGame(myController);
@@ -57,9 +57,9 @@ public class Connexion extends JFrame {
 		//PnlRegister pnlInscription = new PnlRegister(myController);
 		//contentPane.add(pnlInscription);
 			
-		//pnlConnexion = new PnlLogin(myController);	
-		//contentPane.add(pnlConnexion);
-		//pnlConnexion.setLayout(new BorderLayout(0, 0));
+		pnlConnexion = new PnlLogin(myController);	
+		contentPane.add(pnlConnexion);
+		pnlConnexion.setLayout(new BorderLayout(0, 0));
 		
 		
 		

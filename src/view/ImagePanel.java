@@ -6,9 +6,13 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import control.Controller;
+
 public class ImagePanel extends JPanel {
     
     private Image backgroundImage;
+	private Connexion myConnexion;
+	private Controller myController;
 
     public ImagePanel(String fileName) {
         backgroundImage = new ImageIcon(fileName).getImage();
