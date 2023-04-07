@@ -1,19 +1,15 @@
 package view;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 
 import control.Controller;
 import websocket.ClientWebsocket;
@@ -126,7 +122,12 @@ public class PnlLogin extends JPanel {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 					
-
+					myController.getMyView().getPnlConnexion().setVisible(false);
+					myController.getMyView().remove(myController.getMyView().getPnlConnexion());
+					myController.getMyView().setPnlConnexion(null);
+					
+					myController.getMyView().setPnlModejeu(new PnlGamemode(controller));
+					myController.getMyView().add(myController.getMyView().getPnlModejeu());
 				}
 			}
 		});
