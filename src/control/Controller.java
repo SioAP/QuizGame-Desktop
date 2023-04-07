@@ -15,7 +15,7 @@ public class Controller {
     private QuizGame myGame;
     private DAOMySQL myDAO;
     private ClientWebsocket myClient;
-    private Connexion myView;
+    private Router myView;
 	private User myUser;
 	
 	
@@ -33,7 +33,7 @@ public class Controller {
 		
 		this.myClient = new ClientWebsocket(this);
 		
-		this.myView = new Connexion(this);
+		this.myView = new Router(this);
 		
 		this.myGame = new QuizGame(this);
 		
@@ -60,11 +60,11 @@ public class Controller {
 		return myDAO;
 	}
 
-	public Connexion getMyView() {
+	public Router getMyView() {
 		return myView;
 	}
 
-	public void setMyView(Connexion myView) {
+	public void setMyView(Router myView) {
 		this.myView = myView;
 	}
 
