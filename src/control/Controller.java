@@ -75,5 +75,23 @@ public class Controller {
 	public User getMyUser() {
 		return myUser;
 	}
+
+	public Connexion getMyConsole() {
+		return myConsole;
+	}
+
+	public void setMyConsole(Connexion myConsole) {
+		this.myConsole = myConsole;
+	}
+
+	public void setMyClient(ClientWebsocket myClient) {
+		this.myClient = myClient;
+	}
+
+	public void setMyUser(User myUser) {
+		this.myUser = myUser;
+	}
+	
+	
 }
 

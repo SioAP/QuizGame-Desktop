@@ -14,17 +14,18 @@ import javax.swing.SwingConstants;
 
 import control.Controller;
 import model.User;
-import websocket.ClientWebsocket;
+
 
 public class PnlLogin extends JPanel {
 	
 	private Controller myController;
 	private JTextField txtLogin;
 	private JPasswordField txtPassword;
+
 	
 	public PnlLogin(Controller controller) {
 		myController = controller;
-		
+	
 		
 		setBounds(10, 10, 358, 294);
 		setLayout(null);
@@ -58,8 +59,18 @@ public class PnlLogin extends JPanel {
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				
+				myController.getMyConsole().getPnlConnexion().setVisible(false);
+				myController.getMyConsole().remove(myController.getMyConsole().getPnlConnexion());
+				myController.getMyConsole().setPnlConnexion(null);
+				
+				myController.getMyConsole().setPnlInscritpion(new PnlRegister(controller));
+				myController.getMyConsole().add(myController.getMyConsole().getPnlInscritpion());
+				
 				myController.getMyClient().createUser(txtLogin.getText(), String.valueOf(txtPassword.getPassword()));
+				
 				User user = myController.getMyUser();
+				
 				if (user.isConnected()) {
 					
 					
@@ -74,10 +85,21 @@ public class PnlLogin extends JPanel {
 		JButton btnLogin = new JButton("S'indentifier");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				User user = myController.getMyUser();
 				if (user.isConnected()) {
 					
-					 
+					myController.getMyConsole().getPnlConnexion().setVisible(false);
+					myController.getMyConsole().remove(myController.getMyConsole().getPnlConnexion());
+					myController.getMyConsole().setPnlConnexion(null);
+					
+					myController.getMyConsole().setPnlModejeu(new PnlGamemode(controller));
+					myController.getMyConsole().add(myController.getMyConsole().getPnlModejeu());
+					
+				}else {
+					JLabel lblLoginerreur = new JLabel("Utilisateur ou mot de passe invalide");
+					lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 15));
+					lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
 				}
 			}
 		});
@@ -96,7 +118,6 @@ public class PnlLogin extends JPanel {
 		txtPassword = new JPasswordField();
 		txtPassword.setBounds(78, 187, 200, 35);
 		add(txtPassword);
-		
 		
 	}
 
