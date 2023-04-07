@@ -60,21 +60,13 @@ public class PnlLogin extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				myController.getMyConsole().getPnlConnexion().setVisible(false);
-				myController.getMyConsole().remove(myController.getMyConsole().getPnlConnexion());
-				myController.getMyConsole().setPnlConnexion(null);
+				myController.getMyView().getPnlConnexion().setVisible(false);
+				myController.getMyView().remove(myController.getMyView().getPnlConnexion());
+				myController.getMyView().setPnlConnexion(null);
 				
-				myController.getMyConsole().setPnlInscritpion(new PnlRegister(controller));
-				myController.getMyConsole().add(myController.getMyConsole().getPnlInscritpion());
+				myController.getMyView().setPnlInscritpion(new PnlRegister(controller));
+				myController.getMyView().add(myController.getMyView().getPnlInscritpion());
 				
-				myController.getMyClient().createUser(txtLogin.getText(), String.valueOf(txtPassword.getPassword()));
-				
-				User user = myController.getMyUser();
-				
-				if (user.isConnected()) {
-					
-					
-				}
 			}
 		});
 		btnRegister.setBackground(new Color(255, 255, 255));
@@ -86,21 +78,21 @@ public class PnlLogin extends JPanel {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				User user = myController.getMyUser();
-				if (user.isConnected()) {
+	
+	
 					
-					myController.getMyConsole().getPnlConnexion().setVisible(false);
-					myController.getMyConsole().remove(myController.getMyConsole().getPnlConnexion());
-					myController.getMyConsole().setPnlConnexion(null);
+					myController.getMyView().getPnlConnexion().setVisible(false);
+					myController.getMyView().remove(myController.getMyView().getPnlConnexion());
+					myController.getMyView().setPnlConnexion(null);
 					
-					myController.getMyConsole().setPnlModejeu(new PnlGamemode(controller));
-					myController.getMyConsole().add(myController.getMyConsole().getPnlModejeu());
+					myController.getMyView().setPnlModejeu(new PnlGamemode(controller));
+					myController.getMyView().add(myController.getMyView().getPnlModejeu());
 					
-				}else {
-					JLabel lblLoginerreur = new JLabel("Utilisateur ou mot de passe invalide");
-					lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 15));
-					lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
-				}
+//				else {
+//					JLabel lblLoginerreur = new JLabel("Utilisateur ou mot de passe invalide");
+//					lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 15));
+//					lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
+//				}
 			}
 		});
 		btnLogin.setBackground(new Color(255, 255, 255));

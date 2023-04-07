@@ -74,12 +74,12 @@ public class PnlRegister extends JPanel {
 		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				myController.getMyConsole().getPnlInscritpion().setVisible(false);
-				myController.getMyConsole().remove(myController.getMyConsole().getPnlInscritpion());
-				myController.getMyConsole().setPnlInscritpion(null);
+				myController.getMyView().getPnlInscritpion().setVisible(false);
+				myController.getMyView().remove(myController.getMyView().getPnlInscritpion());
+				myController.getMyView().setPnlInscritpion(null);
 				
-				myController.getMyConsole().setPnlConnexion(new PnlLogin(controller));
-				myController.getMyConsole().add(myController.getMyConsole().getPnlConnexion());
+				myController.getMyView().setPnlConnexion(new PnlLogin(controller));
+				myController.getMyView().add(myController.getMyView().getPnlConnexion());
 			}
 		});
 		

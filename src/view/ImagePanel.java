@@ -11,7 +11,7 @@ import control.Controller;
 public class ImagePanel extends JPanel {
     
     private Image backgroundImage;
-	private Connexion myConnexion;
+	private Router myConnexion;
 	private Controller myController;
 
     public ImagePanel(String fileName) {
